@@ -1,0 +1,74 @@
+---
+title: "datatable_101"
+author: "Juan Ignacio Garicoche"
+date: '2022-08-18'
+output: html_document
+---
+
+```{r}
+library(data.table)
+```
+
+
+2. How to create a data.table from lists (vectors) ?
+
+```{r}
+list_1 <- c("a","b","c","d")
+list_2 <- c("1","2","3","4")
+list_3 <- c("aa","bb","cc","dd")
+
+dt <- data.table::data.table(list_1, list_2, list_3)
+
+rm(list_1, list_2, list_3, dt)
+```
+
+3. How to import csv data files as data.table ?
+
+```{r}
+dt <- fread('C:/Users/jgaricoche/Downloads/prueba_lecutra.csv')
+```
+
+4. How to import only ‘n’ rows from a csv file to create a data.table?
+
+```{r}
+dt <- fread('C:/Users/jgaricoche/Downloads/prueba_lecutra.csv', nrows=1)
+```
+
+5. How to import only specified columns from a csv file?
+
+```{r}
+dt <- fread('C:/Users/jgaricoche/Downloads/prueba_lecutra.csv', select=('fondo_fijo'))
+```
+
+6. How to get the nrows, ncolumns, datatype, summary stats of each column in a data.table
+
+```{r}
+dt <- fread('C:/Users/jgaricoche/Desktop/Facultad/DMEyF_2022/repo/datasets/bostonHousing.csv')
+
+nrows <- nrow(dt)
+ncols <- ncol(dt)
+print(sapply(dt,class), end='\n')
+print(summary(dt))
+```
+
+7. How to extract the row and column number of a particular cell with given criterion?
+
+```{r}
+# Get rows with highest age
+subset <- dt[age == max(age, na.rm = TRUE)][,c('age','crim')]
+```
+
+10. How to check for missing values in a data.table?
+
+```{r}
+missing_values <- dt[!complete.cases(dt), ]
+```
+
+22. How to calculate count of each unique value in a given column?
+
+
+22_bis. How to group by one column?
+
+```{r}
+groupby <- dt[, list(suma_grupo = sum(crim), cant_filas = .(.N), records = .N), by=rad]
+```
