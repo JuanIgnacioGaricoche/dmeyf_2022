@@ -36,7 +36,7 @@ dataset[, "s_cdescubierto_preacordado_mcuentas_saldo" := cdescubierto_preacordad
 dataset[, "r_cdescubierto_preacordado_mcuentas_saldo" := cdescubierto_preacordado-mcuentas_saldo]
 
 # Escribo el dataset con FE
-fwrite(dataset, "./datasets/competencia2_2022.csv.gz")
+fwrite(dataset, "./datasets/competencia2_2022_fe.csv.gz")
 
 # Train y test
 dtrain  <- dataset[ foto_mes==202101 ]  #defino donde voy a entrenar
