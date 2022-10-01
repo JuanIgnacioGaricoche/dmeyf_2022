@@ -15,9 +15,9 @@ setwd("C:/Users/jgaricoche/Desktop/Facultad/DMEyF_2022/repo")
 dataset  <- fread("./datasets/competencia2_2022.csv" )
 
 
-#creo la clase_binaria SI={ BAJA+1, BAJA+2 }    NO={ CONTINUA }
-dataset[ foto_mes==202101, 
-         clase_binaria :=  ifelse( clase_ternaria=="CONTINUA", "NO", "SI" ) ]
+# #creo la clase_binaria SI={ BAJA+1, BAJA+2 }    NO={ CONTINUA }
+# dataset[ foto_mes==202101, 
+#          clase_binaria :=  ifelse( clase_ternaria=="CONTINUA", "NO", "SI" ) ]
 
 # Hago FE con las vbles mas importantes
 dataset[, "c_ctrx_quarter_mcuentas_saldo" := ctrx_quarter/mcuentas_saldo]
