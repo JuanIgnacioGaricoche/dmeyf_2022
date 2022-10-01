@@ -35,6 +35,9 @@ dataset[, "m_cdescubierto_preacordado_mcuentas_saldo" := cdescubierto_preacordad
 dataset[, "s_cdescubierto_preacordado_mcuentas_saldo" := cdescubierto_preacordado+mcuentas_saldo]
 dataset[, "r_cdescubierto_preacordado_mcuentas_saldo" := cdescubierto_preacordado-mcuentas_saldo]
 
+# Escribo el dataset con FE
+fwrite(dataset, "./datasets/competencia2_2022.csv.gz")
+
 # Train y test
 dtrain  <- dataset[ foto_mes==202101 ]  #defino donde voy a entrenar
 dapply  <- dataset[ foto_mes==202103 ]  #defino donde voy a aplicar el modelo
