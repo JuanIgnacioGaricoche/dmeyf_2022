@@ -1,4 +1,4 @@
-# source( "~/labo/src/lightgbm/z723_lightgbm_binaria_BO.r" )
+# source( "~/labo/src/lightgbm/723_lightgbm_binaria_BO.r" )
 # Este script esta pensado para correr en Google Cloud
 #   8 vCPU
 #  32 GB memoria RAM
@@ -32,11 +32,12 @@ options(error = function() {
 
 #Aqui se cargan los hiperparametros
 hs <- makeParamSet( 
-         makeNumericParam("learning_rate",    lower=    0.005, upper=    0.3),
+         makeNumericParam("learning_rate",    lower=    0.005, upper=    0.25), # reduzco el upper desde 0.3
          makeNumericParam("feature_fraction", lower=    0.2  , upper=    1.0),
          makeIntegerParam("min_data_in_leaf", lower=    0L   , upper=  8000L),
          makeIntegerParam("num_leaves",       lower=   16L   , upper=  1024L),
-         makeIntegerParam("envios",           lower= 5000L   , upper= 15000L)
+         makeIntegerParam("envios",           lower= 5000L   , upper= 15000L),
+         makeIntegerParam("max_depth",        lower=5L       , upper=  25L)
         )
 
 #defino los parametros de la corrida, en una lista, la variable global  PARAM
@@ -45,18 +46,18 @@ PARAM  <- list()
 
 PARAM$experimento  <- "HT7231"
 
-PARAM$input$dataset       <- "./datasets/competencia2_2022.csv.gz"
+PARAM$input$dataset       <- "./datasets/competencia2_2022_fe.csv.gz"
 PARAM$input$training      <- c( 202103 )
 
 PARAM$trainingstrategy$undersampling  <-  1.0   # un undersampling de 0.1  toma solo el 10% de los CONTINUA
-PARAM$trainingstrategy$semilla_azar   <- 102191  #Aqui poner la propia semilla
+PARAM$trainingstrategy$semilla_azar   <- 335897  #Aqui poner la propia semilla
 
 PARAM$hyperparametertuning$iteraciones <- 100
 PARAM$hyperparametertuning$xval_folds  <- 5
 PARAM$hyperparametertuning$POS_ganancia  <- 78000
 PARAM$hyperparametertuning$NEG_ganancia  <- -2000
 
-PARAM$hyperparametertuning$semilla_azar  <- 102191  #Aqui poner la propia semilla, PUEDE ser distinta a la de trainingstrategy
+PARAM$hyperparametertuning$semilla_azar  <- 679909  #Aqui poner la propia semilla, PUEDE ser distinta a la de trainingstrategy
 
 #------------------------------------------------------------------------------
 #graba a un archivo los componentes de lista
@@ -124,7 +125,7 @@ EstimarGanancia_lightgbm  <- function( x )
                           boost_from_average= TRUE,
                           feature_pre_filter= FALSE,
                           verbosity= -100,
-                          max_depth=  -1,         # -1 significa no limitar,  por ahora lo dejo fijo
+                          # max_depth=  -1,         # -1 significa no limitar,  por ahora lo dejo fijo
                           min_gain_to_split= 0.0, #por ahora, lo dejo fijo
                           lambda_l1= 0.0,         #por ahora, lo dejo fijo
                           lambda_l2= 0.0,         #por ahora, lo dejo fijo
