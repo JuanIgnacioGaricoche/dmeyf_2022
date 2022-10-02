@@ -36,7 +36,7 @@ hs <- makeParamSet(
          makeNumericParam("feature_fraction", lower=    0.2  , upper=    1.0),
          makeIntegerParam("min_data_in_leaf", lower=    0L   , upper=  8000L),
          makeIntegerParam("num_leaves",       lower=   16L   , upper=  1024L),
-         makeIntegerParam("envios",           lower= 5000L   , upper= 15000L),
+         makeIntegerParam("envios",           lower= 5000L   , upper= 15000L)
          # makeIntegerParam("max_depth",        lower=5L       , upper=  25L)
         )
 
@@ -44,6 +44,7 @@ hs <- makeParamSet(
 #  muy pronto esto se leera desde un archivo formato .yaml
 PARAM  <- list()
 
+# PARAM$experimento  <- "HT7231"
 PARAM$experimento  <- "HT7232"
 
 # PARAM$input$dataset       <- "./datasets/competencia2_2022_fe.csv.gz"
