@@ -35,7 +35,7 @@ hs <- makeParamSet(
          makeNumericParam("learning_rate",    lower=    0.005, upper=    0.25), # reduzco el upper desde 0.3
          makeNumericParam("feature_fraction", lower=    0.2  , upper=    1.0),
          makeIntegerParam("min_data_in_leaf", lower=    0L   , upper=  8000L),
-         makeIntegerParam("num_leaves",       lower=   16L   , upper=  1024L),
+         makeIntegerParam("num_leaves",       lower=   16L   , upper=  2048L),
          makeIntegerParam("envios",           lower= 5000L   , upper= 15000L)
          # makeIntegerParam("max_depth",        lower=5L       , upper=  25L)
         )
