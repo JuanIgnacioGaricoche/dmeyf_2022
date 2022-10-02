@@ -37,16 +37,17 @@ hs <- makeParamSet(
          makeIntegerParam("min_data_in_leaf", lower=    0L   , upper=  8000L),
          makeIntegerParam("num_leaves",       lower=   16L   , upper=  1024L),
          makeIntegerParam("envios",           lower= 5000L   , upper= 15000L),
-         makeIntegerParam("max_depth",        lower=5L       , upper=  25L)
+         # makeIntegerParam("max_depth",        lower=5L       , upper=  25L)
         )
 
 #defino los parametros de la corrida, en una lista, la variable global  PARAM
 #  muy pronto esto se leera desde un archivo formato .yaml
 PARAM  <- list()
 
-PARAM$experimento  <- "HT7231"
+PARAM$experimento  <- "HT7232"
 
-PARAM$input$dataset       <- "./datasets/competencia2_2022_fe.csv.gz"
+# PARAM$input$dataset       <- "./datasets/competencia2_2022_fe.csv.gz"
+PARAM$input$dataset       <- "./datasets/competencia2_2022_fe_dd.csv.gz"
 PARAM$input$training      <- c( 202103 )
 
 PARAM$trainingstrategy$undersampling  <-  1.0   # un undersampling de 0.1  toma solo el 10% de los CONTINUA
@@ -125,7 +126,7 @@ EstimarGanancia_lightgbm  <- function( x )
                           boost_from_average= TRUE,
                           feature_pre_filter= FALSE,
                           verbosity= -100,
-                          # max_depth=  -1,         # -1 significa no limitar,  por ahora lo dejo fijo
+                          max_depth=  -1,         # -1 significa no limitar,  dejo que crezca indefinidamente. Controlo overfitting de otras maneras
                           min_gain_to_split= 0.0, #por ahora, lo dejo fijo
                           lambda_l1= 0.0,         #por ahora, lo dejo fijo
                           lambda_l2= 0.0,         #por ahora, lo dejo fijo
