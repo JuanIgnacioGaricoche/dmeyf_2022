@@ -16,7 +16,7 @@ require("data.table")
 PARAM  <- list()
 PARAM$experimento <- "TS9310"
 
-PARAM$exp_input  <- "FE9250"
+PARAM$exp_input  <- "FE9252"
 
 PARAM$future       <- c( 202107 ) # Mes a predecir en kaggle. No tiene la clase completa
 
