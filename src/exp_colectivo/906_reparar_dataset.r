@@ -12,7 +12,7 @@ require("data.table")
 
 #Parametros del script
 PARAM  <- list()
-PARAM$experimento  <- "EC/CA9060"
+PARAM$experimento  <- "EC_CA9060"
 PARAM$dataset  <- "./datasets/competencia3_2022.csv.gz"
 
 PARAM$metodo  <- "MachineLearning"     #valores posibles  "MachineLearning"  "EstadisticaClasica"
@@ -208,10 +208,10 @@ setwd( "~/buckets/b1/" )
 dataset  <- fread( PARAM$dataset )
 
 #Elimino los campos problematicos
-#Internet se daño a partir de 202010
+#Internet se da??o a partir de 202010
 dataset[  , internet := NULL ]
 
-#Internet se daño a partir de 202010
+#Internet se da??o a partir de 202010
 dataset[  , tmobile_app := NULL ]
 
 

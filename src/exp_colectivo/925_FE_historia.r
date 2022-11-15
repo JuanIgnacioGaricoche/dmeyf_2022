@@ -19,9 +19,9 @@ require("lightgbm")
 
 #Parametros del script
 PARAM  <- list()
-PARAM$experimento <- "EC/FE9251"
+PARAM$experimento <- "EC_FE9251"
 
-PARAM$exp_input  <- "EC/DR9141"
+PARAM$exp_input  <- "EC_DR9141"
 
 PARAM$lag1  <- TRUE
 PARAM$lag2  <- TRUE
@@ -41,7 +41,7 @@ options(error = function() {
 #------------------------------------------------------------------------------
 #se calculan para los 6 meses previos el minimo, maximo y tendencia calculada con cuadrados minimos
 #la formula de calculo de la tendencia puede verse en https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_Introductory_Statistics_(Shafer_and_Zhang)/10%3A_Correlation_and_Regression/10.04%3A_The_Least_Squares_Regression_Line
-#para la maxíma velocidad esta funcion esta escrita en lenguaje C, y no en la porqueria de R o Python
+#para la max??ma velocidad esta funcion esta escrita en lenguaje C, y no en la porqueria de R o Python
 
 cppFunction('NumericVector fhistC(NumericVector pcolumna, IntegerVector pdesde ) 
 {
@@ -166,7 +166,7 @@ AgregaVarRandomForest  <- function( num.trees, max.depth, min.node.size, mtry)
   dataset_rf[ , entrenamiento := as.integer( foto_mes>= 202101 &  foto_mes<= 202103 & ( clase01==1 | azar < 0.10 )) ]
   
   #imputo los nulos, ya que ranger no acepta nulos
-  #Leo Breiman, ¿por que le temias a los nulos?
+  #Leo Breiman, ??por que le temias a los nulos?
   dataset_rf  <- na.roughfix( dataset_rf )
   
   campos_buenos  <- setdiff( colnames(dataset_rf), c("clase_ternaria","entrenamiento" ) )
@@ -220,7 +220,7 @@ fganancia_lgbm_meseta  <- function(probs, datos)
   tbl[ , gan_acum :=  cumsum( gan ) ]
   setorder( tbl, -gan_acum )   #voy por la meseta
   
-  gan  <- mean( tbl[ 1:500,  gan_acum] )  #meseta de tamaño 500
+  gan  <- mean( tbl[ 1:500,  gan_acum] )  #meseta de tama??o 500
   
   pos_meseta  <- tbl[ 1:500,  median(posicion)]
   VPOS_CORTE  <<- c( VPOS_CORTE, pos_meseta )
@@ -232,7 +232,7 @@ fganancia_lgbm_meseta  <- function(probs, datos)
 #------------------------------------------------------------------------------
 #Elimina del dataset las variables que estan por debajo de la capa geologica de canaritos
 #se llama varias veces, luego de agregar muchas variables nuevas, para ir reduciendo la cantidad de variables
-# y así hacer lugar a nuevas variables importantes
+# y as?? hacer lugar a nuevas variables importantes
 
 GVEZ <- 1 
 

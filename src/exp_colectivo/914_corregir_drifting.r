@@ -14,9 +14,9 @@ require("data.table")
 
 #Parametros del script
 PARAM  <- list()
-PARAM$experimento  <- "EC/DR9141"
+PARAM$experimento  <- "EC_DR9141"
 
-PARAM$exp_input  <- "EC/CA9060"
+PARAM$exp_input  <- "EC_CA9060"
 
 #valores posibles  "ninguno" "rank_simple" , "rank_cero_fijo" , "deflacion"
 PARAM$metodo  <- "rank_cero_fijo"
@@ -210,7 +210,7 @@ AgregarVariables( dataset )
 #ordeno de esta forma por el ranking
 setorder( dataset, foto_mes, numero_de_cliente )
 
-#por como armé los nombres de campos, estos son los campos que expresan variables monetarias
+#por como arm?? los nombres de campos, estos son los campos que expresan variables monetarias
 campos_monetarios  <- colnames(dataset)
 campos_monetarios  <- campos_monetarios[campos_monetarios %like% "^(m|Visa_m|Master_m|vm_m)"]
 
