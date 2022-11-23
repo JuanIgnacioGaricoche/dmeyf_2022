@@ -14,7 +14,7 @@ PARAM$archivos <- c(
   "../FCZZ1292_semillerio_kaggle_m1/FCZZ1292_semillerio_kaggle_m1_proba_predicciones.csv",
   "../FCZZ1292_semillerio_kaggle_m2/FCZZ1292_semillerio_kaggle_m2_proba_predicciones.csv",
   "../FCZZ1292_semillerio_kaggle_m6/FCZZ1292_semillerio_kaggle_m6_proba_predicciones.csv",
-  "../FCZZ1292_semillerio_kaggle_m10/FCZZ1292_semillerio_kaggle_m6_proba_predicciones.csv"
+  "../FCZZ1292_semillerio_kaggle_m10/FCZZ1292_semillerio_kaggle_m10_proba_predicciones.csv"
 )
 
 PARAM$corte <- 10500 # cantidad de envios
