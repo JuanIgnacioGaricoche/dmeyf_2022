@@ -13,10 +13,10 @@ PARAM$exp_input <- "FCZZ9410_semillerio_ensamble_m1"
 # Es posible que no se desee activar porque va a crear muchos csv que posiblemente no se utilicen
 PARAM$generar_salidas_individuales <- TRUE
 
-# Genera un archivo que será usado por z1295 si se quiere hibridar los semillerios.
+# Genera un archivo que ser?? usado por z1295 si se quiere hibridar los semillerios.
 PARAM$generar_salida_hibridador <- TRUE
 
-# Decide si para finalizar la predicción usa el ranking o se queda con las probabilidades
+# Decide si para finalizar la predicci??n usa el ranking o se queda con las probabilidades
 PARAM$use_rank_final <- FALSE
 
 # cantidad de envios
@@ -53,7 +53,7 @@ dataset <- fread(arch_dataset)
 dataset_septiembre <- dataset[foto_mes == 202109]
 rm(dataset)
 
-# Tabla que contendrá los rankings de todos los clientes para todas las semillas
+# Tabla que contendr?? los rankings de todos los clientes para todas las semillas
 tb_ranking_semillerio <- data.table(numero_de_cliente = dataset_septiembre[, numero_de_cliente])
 
 cat("Semillas involucradas en el semillerio: ", length(archivos), "\n")
@@ -69,17 +69,17 @@ for (archivo in archivos) {
   setorder(tb_ranking_semillerio, numero_de_cliente)
   
   if (PARAM$use_rank_final) {
-    # Generamos predicción del semillerio en base al rank
+    # Generamos predicci??n del semillerio en base al rank
     tb_ranking_semillerio[, paste0("rank_", ksemilla) := tb_prediccion$rank]
     
-    # Generamos predicción individual
+    # Generamos predicci??n individual
     setorder(tb_prediccion, rank)
   } else {
     # usamos la probabilidad, no el rank
-    # Generamos predicción del semillerio en base al rank
+    # Generamos predicci??n del semillerio en base al rank
     tb_ranking_semillerio[, paste0("rank_", ksemilla) := tb_prediccion$prob]
     
-    # Generamos predicción individual
+    # Generamos predicci??n individual
     setorder(tb_prediccion, prob)
   }
   
@@ -105,10 +105,10 @@ for (archivo in archivos) {
     )
   }
   
-  # Esta es la predicción del semillerio para la semilla i-esima
+  # Esta es la predicci??n del semillerio para la semilla i-esima
   tb_prediccion_semillerio <- data.table(
     tb_ranking_semillerio[, list(numero_de_cliente)],
-    prediccion = rowMeans(tb_ranking_semillerio[, c(-1)]) # excluye el numero_de_cliente del cálculo de la media
+    prediccion = rowMeans(tb_ranking_semillerio[, c(-1)]) # excluye el numero_de_cliente del c??lculo de la media
   )
   setorder(tb_prediccion_semillerio, prediccion) # Esto es un ranking, entonces de menor a mayor
   tb_prediccion_semillerio[, Predicted := 0]
